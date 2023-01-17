@@ -1,30 +1,56 @@
 
 <template>
-  <div class="wrapper">
-    <TopNavbar />
-    <div class="parallax__layer parallax__layer--3">
-      <div id="stars" class="top-stars">&nbsp;</div>
-    </div>
-    <div class="parallax__layer parallax__layer--2">
-      <div id="clouds" class="top-clouds">&nbsp;</div>
-    </div>
-    <div class="top-trees">&nbsp;</div>
-    <Footer />
-  </div>
+ <layout>
+    <template v-slot:navbar>
+      <TopNavbar />
+      <SearchBox />
+    </template>
 
+    <template v-slot:header>
+    </template>
+
+    <template v-slot:default>
+      <div id="main-panel" class="container-fluid">
+    
+        <div>
+          <p v-if="loading">Loading post...</p>
+          <p v-if="error">{{error.message }}</p>
+          <div v-if="post">
+            <Post :post="post" />
+          </div>
+        </div> 
+
+
+		  
+      </div>
+    </template>
+
+    <template v-slot:footer>
+      <Footer />
+    </template>
+  </layout>
 
 </template>
 
 
 <script  lang="ts">
-import TopNavbar from '../components/TopNavbar.vue'
-import Footer from '../components/Footer.vue'
-import Layout from "./layout/Layout.vue"
+  import { useRoute } from 'vue-router'
+  import { storeToRefs } from 'pinia'
+  import { useNewsStore } from '../store/news'
+  import TopNavbar from '../components/TopNavbar.vue'
+  import Footer from '../components/Footer.vue'
+  import Layout from "./layout/Layout.vue"
+  import Post from "../components/Post.vue"
+  const route = useRoute() 
+  const { post, loading, error } = storeToRefs(useNewsStore())
+  const { getPostDetails } = useNewsStore()
 
+  getPostDetails(route.params.id)
 export default {
   components: {
     Layout,
     TopNavbar,
+    Post,
     Footer
   },
   computed: {},

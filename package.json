@@ -1,7 +1,7 @@
 {
   "name": "newsmatters",
   "private": true,
-  "author":"Tewolde H Mekonen",
+  "author": "Tewolde H Mekonen",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "javascript-time-ago": "^2.5.9",
     "pinia": "^2.0.29",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"

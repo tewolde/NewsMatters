@@ -11,12 +11,16 @@
 
     <template v-slot:default>
       <div id="main-panel" class="container-fluid">
-        <h1>News Headlines </h1>
+    
+		  <h1 class="h1 text-center" id="pageHeaderTitle">News Headlines</h1>
+        <h1> </h1>
         <p v-if="newsStore.loading">Loading posts...</p>
         <p v-if="newsStore.error">{{ newsStore.error.message }}</p>
-        <p v-if="newsStore.posts" v-for="post in newsStore.posts" :key="post.publishedAt" >
-        <RouterLink :to="`/post/${post.publishedAt}`">{{ post.title }}</RouterLink> 
-        <NewsItemCard post="post" /> </p>
+
+        <div v-if="newsStore.posts" v-for="post in newsStore.posts" :key="post.publishedAt">
+          <NewsItemCard :post="post" /> 
+          <!-- <RouterLink :to="`/post/${post.publishedAt}`">{{ post.title }}</RouterLink>  -->
+        </div>
       </div>
     </template>
 
@@ -44,6 +48,7 @@ import TopNavbar from '../components/TopNavbar.vue'
 import Footer from '../components/Footer.vue'
 import Layout from "./layout/Layout.vue"
 import SearchBox from '../components/SearchBox.vue'
+import NewsItemCard from '../components/NewsItemCard.vue'
 
 
 import { mapStores } from 'pinia'
@@ -55,6 +60,7 @@ export default {
     TopNavbar,
     SearchBox,
     Footer,
+    NewsItemCard
   },
   computed: {
     ...mapStores( useNewsStore )

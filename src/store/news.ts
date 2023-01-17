@@ -13,8 +13,9 @@ export const useNewsStore = defineStore( {
   } ),
 
   getters: {
-    getNewsItemDetails: ( state ) => {
-      return ( puplishedAt ) => state.posts.filter( ( post ) => post.publishedAt === state.publishedAt )
+    getPostDetails (id): ( state ) => {
+      state.post = state.posts.filter( ( post ) => post.publishedAt === id )
+      return ( state.post ) 
     }
   },
 
@@ -33,5 +34,6 @@ export const useNewsStore = defineStore( {
         this.loading = false
       }
     }
-  }
+  },
+
 })
