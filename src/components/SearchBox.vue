@@ -13,7 +13,14 @@
         <div class="col-md-8 col-lg-6 col-sm-10 col-10">
 
           <form class="col-12">
-            <input  autofocus type="search" class="form-control form-control-dark" placeholder=" Search News... " aria-label="Search">
+            <input 
+             :value="queryString" 
+             autofocus 
+            type="search"
+            @input="handleSearch" 
+            class="form-control form-control-dark" 
+            placeholder=" Search News... " 
+            aria-label="Search">
             <button type="submit" class="submit"><img src="/images-cloud/search.svg" alt="Search"></button>
           </form>
         </div>
@@ -23,4 +30,21 @@
 </div>
 </template>
 
+<script >
+export default {
+  data() {
+    return {
+      queryString: '',
+    }
+  },
+  methods: {
+      handleSearch(event)
+      {
+        // store set searchkey
+        // trigger fetch
+        console.log(value)
+      }
+    },
+};
+</script>
 

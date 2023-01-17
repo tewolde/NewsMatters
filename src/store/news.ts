@@ -8,14 +8,16 @@ export const useNewsStore = defineStore( {
     post: {},
     loading: false,
     pageSize: 20,
-    gueryString: 'Everything',
+    gueryString: 'Technology',
     error: null
   } ),
 
   getters: {
-    getPostDetails (id): ( state ) => {
-      state.post = state.posts.filter( ( post ) => post.publishedAt === id )
-      return ( state.post ) 
+    getPostDetails: (state) =>
+    {
+        return (post) =>{
+          return  state.post = state.posts.filter((post) => post.publishedAt === 'route.params.id')
+        }
     }
   },
 
@@ -28,12 +30,14 @@ export const useNewsStore = defineStore( {
         this.posts = await fetch( url ).then( ( res ) => { return res.json() } ).then( ( data ) => { return data.articles } )
       } 
       catch ( error ) {
-        this.error = error
+        this.error = error;
       } finally {
         console.log(this.posts)
         this.loading = false
       }
     }
-  },
+    
+  }
+
 
 })

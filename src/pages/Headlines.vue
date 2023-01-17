@@ -7,11 +7,7 @@
     </template>
 
     <template v-slot:header>
-    </template>
 
-    <template v-slot:default>
-      <div id="main-panel" class="container-fluid">
-    
 		  <h1 class="h1 text-center" id="pageHeaderTitle">News Headlines</h1>
         <h1> </h1>
         <p v-if="newsStore.loading">Loading posts...</p>
@@ -21,6 +17,11 @@
           <NewsItemCard :post="post" /> 
           <!-- <RouterLink :to="`/post/${post.publishedAt}`">{{ post.title }}</RouterLink>  -->
         </div>
+    </template>
+
+    <template v-slot:default>
+      <div id="main-panel" class="container-fluid">
+    
       </div>
     </template>
 
