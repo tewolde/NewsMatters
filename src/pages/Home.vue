@@ -34,12 +34,6 @@ export default {
     SearchBox,
     Footer
   },
-
-  computed: {},
-
-  mounted() {
-  },
-
   data() {
     return {
     }

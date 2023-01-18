@@ -3,7 +3,7 @@
       <div class="container d-flex flex-wrap">
         <ul class="nav me-auto">
           <li class="nav-item"><router-link to="/" class="nav-link px-2 active" aria-current="page">Home</router-link></li>
-          <li class="nav-item"><router-link to="/headline/" class="nav-link px-2 active" aria-current="page">Headlines</router-link></li>
+          <li class="nav-item"><router-link to="/posts/" class="nav-link px-2 active" aria-current="page">Posts</router-link></li>
 
         </ul>
         <div class="flex-shrink-0 dropdown">

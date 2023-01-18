@@ -1,8 +1,8 @@
 import { createRouter } from 'vue-router'
-import HeadLine from './Headlines.vue'
-import NewsItem from './Article.vue'
+import Posts from './Posts.vue'
+import NewsItem from './Post.vue'
 import Setting from './Settings.vue'
-import Front from './Front.vue'
+import Front from './Home.vue'
 
 const routes = [
   {
@@ -10,8 +10,8 @@ const routes = [
     component: Front
   },
   {
-    path: '/headline/',
-    component: HeadLine
+    path: '/posts/',
+    component: Posts
   },
   {
     path: '/news-item/:id',
@@ -27,7 +27,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../pages/Docs.vue')
+    component: () => import('./Help.vue')
   }
 ]
 

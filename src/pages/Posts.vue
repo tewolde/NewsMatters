@@ -3,19 +3,16 @@
   <layout>
     <template v-slot:navbar>
       <TopNavbar />
-      <SearchBox />
     </template>
 
     <template v-slot:header>
-
+      <!-- <SearchBox /> -->
 		  <h1 class="h1 text-center" id="pageHeaderTitle">News Headlines</h1>
-        <h1> </h1>
-        <p v-if="newsStore.loading">Loading posts...</p>
-        <p v-if="newsStore.error">{{ newsStore.error.message }}</p>
+        <p v-if="loading">Loading posts...</p>
+        <p v-if="error">{{ error.message }}</p>
 
-        <div v-if="newsStore.posts" v-for="post in newsStore.posts" :key="post.publishedAt">
+        <div v-if="posts" v-for="post in posts" :key="post.publishedAt">
           <NewsItemCard :post="post" /> 
-          <!-- <RouterLink :to="`/post/${post.publishedAt}`">{{ post.title }}</RouterLink>  -->
         </div>
     </template>
 
@@ -34,39 +31,22 @@
 
 
 
-<script lang="ts">
-import { RouterLink } from 'vue-router'
-import { storeToRefs } from 'pinia'
-import { useNewsStore } from '../store/news'
+<script setup lang="ts">
 
-const { posts, loading, error } = storeToRefs(useNewsStore())
-const { fetchAllNews } = useNewsStore()
+import { RouterLink } from 'vue-router'
+import Layout from "./layout/Layout.vue"
+import TopNavbar from '../components/TopNavbar.vue'
+import SearchBox from '../components/SearchBox.vue'
+import NewsItemCard from '../components/NewsItemCard.vue'
+import Footer from '../components/Footer.vue'
+import { usePostsStore } from '../store/posts'
+import { storeToRefs } from 'pinia'
+const store = usePostsStore()
+const { posts, loading, error } = storeToRefs(store)
+const { fetchAllNews } = store
 
 fetchAllNews()
 
-
-import TopNavbar from '../components/TopNavbar.vue'
-import Footer from '../components/Footer.vue'
-import Layout from "./layout/Layout.vue"
-import SearchBox from '../components/SearchBox.vue'
-import NewsItemCard from '../components/NewsItemCard.vue'
-
-
-import { mapStores } from 'pinia'
-
-export default {
-
-  components: {
-    Layout,
-    TopNavbar,
-    SearchBox,
-    Footer,
-    NewsItemCard
-  },
-  computed: {
-    ...mapStores( useNewsStore )
-  }
-}
 </script>
 
 
